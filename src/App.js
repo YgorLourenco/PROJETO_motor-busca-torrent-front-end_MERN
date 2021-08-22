@@ -1,24 +1,55 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import Container  from 'react-bootstrap/Container'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from 'react-router-dom'
+import styled from 'styled-components';
+import About from './components/About';
+import Feedback from './components/Feedback';
+import Footer from './components/Footer';
+import Header from './components/Header';
+import SearchCard from './components/SearchCard';
+import Torrents from './components/Torrents';
 
-function App() {
+const Wrapper = styled(Container)`
+  margin-top: 70px;
+`;
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Header/>
+      <Switch>
+
+        <Route exact path='/about'>
+          <Wrapper>
+            <About />
+          </Wrapper>
+        </Route>
+
+        <Route exact path='/feedback'>
+          <Wrapper>
+            <Feedback />
+          </Wrapper>
+        </Route>
+
+        <Route exact path='/'>
+          <Wrapper>
+            <SearchCard />
+          </Wrapper>
+        </Route>
+
+        <Route exact path='/search'>
+          <Wrapper>
+            <Torrents />
+          </Wrapper>
+        </Route>
+
+      </Switch>
+      <Footer/>
+    </Router>
   );
 }
 
